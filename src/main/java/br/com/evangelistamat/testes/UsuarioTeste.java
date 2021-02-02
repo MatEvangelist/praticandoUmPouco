@@ -1,24 +1,15 @@
 package br.com.evangelistamat.testes;
 
 import br.com.evangelistamat.entidades.Usuario;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class UsuarioTeste {
-
-    @BeforeClass
-    public static void setup() {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        baseURI = "https://reqres.in";
-        basePath = "/api";
-    }
+public class UsuarioTeste extends BaseTeste {
 
     @Test
     public void testeListaMetadadosDoUsuario() {
@@ -34,7 +25,7 @@ public class UsuarioTeste {
 
     @Test
     public void testeCriarUsuarioComSucesso() {
-        Usuario usuario = new Usuario("Mathews", "desempregado");
+        Usuario usuario = new Usuario("Mathews", "desempregado", "mathews.pee@gmail.com");
 
         given()
             .contentType(ContentType.JSON)
@@ -43,6 +34,6 @@ public class UsuarioTeste {
             .post("/user")
         .then()
             .statusCode(HttpStatus.SC_CREATED)
-            .body("name", is("Mathew"));
+            .body("name", is("Mathews"));
     }
 }
