@@ -1,7 +1,6 @@
 package br.com.evangelistamat.testes;
 
 import br.com.evangelistamat.entidades.Usuario;
-import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
 
@@ -11,12 +10,16 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class UsuarioTeste extends BaseTeste {
 
+    private static final String LISTAR_USUARIOS_ENDPOINT = "/users";
+    private static final String CRIAR_USUARIOS_ENDPOINT = "/user";
+
+
     @Test
     public void testeListaMetadadosDoUsuario() {
         given()
             .params("page", "2")
         .when()
-            .get("/users")
+            .get(LISTAR_USUARIOS_ENDPOINT)
         .then()
             .statusCode(HttpStatus.SC_OK)
             .body("page", is(2))
@@ -30,7 +33,7 @@ public class UsuarioTeste extends BaseTeste {
         given()
             .body(usuario)
         .when()
-            .post("/user")
+            .post(CRIAR_USUARIOS_ENDPOINT)
         .then()
             .statusCode(HttpStatus.SC_CREATED)
             .body("name", is("Mathews"));
