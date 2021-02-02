@@ -28,7 +28,6 @@ public class UsuarioTeste extends BaseTeste {
         Usuario usuario = new Usuario("Mathews", "desempregado", "mathews.pee@gmail.com");
 
         given()
-            .contentType(ContentType.JSON)
             .body(usuario)
         .when()
             .post("/user")
