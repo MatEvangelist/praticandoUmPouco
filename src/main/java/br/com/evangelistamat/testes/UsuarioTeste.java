@@ -29,7 +29,7 @@ public class UsuarioTeste extends BaseTeste {
 
     @Test
     public void testeCriarUsuarioComSucesso() {
-        Usuario usuario = new Usuario("Mathews", "desempregado", "mathews.pee@gmail.com");
+        Usuario usuario = new Usuario("Mathews", "desempregado", "mathews.pee@gmail.com", "Evangelista");
 
         given()
             .body(usuario)
@@ -46,7 +46,7 @@ public class UsuarioTeste extends BaseTeste {
         int perPageEsperado = getPerPageEsperado(pageEsperado);
 
         given()
-            .params("page", pageEsperado)
+            .param("page", pageEsperado)
         .when()
             .get(LISTAR_USUARIOS_ENDPOINT)
         .then()
@@ -58,6 +58,7 @@ public class UsuarioTeste extends BaseTeste {
             );
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testeMostrarUsuarioEspecifico(){
         Usuario usuario =

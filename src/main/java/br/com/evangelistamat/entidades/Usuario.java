@@ -2,8 +2,12 @@ package br.com.evangelistamat.entidades;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true) //ignora propriedades/atributos desconhecidos/n mapeadas
+@Data //cria getters e setters para todos atributos
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @JsonAlias("first_name")
@@ -13,43 +17,4 @@ public class Usuario {
     @JsonAlias("last_name")
     private String lastName;
 
-    public Usuario() {}
-
-    public Usuario(String name, String job, String email) {
-        this.name = name;
-        this.job = job;
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
